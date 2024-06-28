@@ -1,0 +1,1 @@
+# Esta é uma aplicação onde é possível saber se compensa mais abastecer com gasolina ou com álcool, baseado em um cálculo simples (e real) onde ao preencher os inputs com o valor de cada combustível e clicar em "Calcular", é devolvido a resposta de qual vale mais a pena.
