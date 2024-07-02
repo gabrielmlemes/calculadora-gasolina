@@ -8,6 +8,11 @@
     margin-top: 20px;
 }
 
+.container p {
+    color: #fff;
+    margin: 12px 0;
+}
+
 .logo {
     max-width: 227px;
 }
@@ -72,12 +77,4 @@
     color: #fff;
     margin-bottom: 8px;
     font-size: 18px;
-}
-
-footer {
-    position: absolute;
-    bottom: 5px;
-    left: 8px;
-    color: #fff;
-    font-size: 12px;
 }

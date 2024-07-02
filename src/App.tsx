@@ -1,53 +1,54 @@
-import { useState, FormEvent } from 'react'
-import './App.css'
+import { useState, FormEvent } from "react";
+import "./App.css";
 
-import logoImg from './assets/logo.png'
+import logoImg from "./assets/logo.png";
 
 /*
   Calculo: alcool / gasolina 
   E se o resultado for menor que 0.7 compensa usar alcool
 */
 
-interface InfoProps{
+interface InfoProps {
   title: string;
   gasolina: string | number;
   alcool: string | number;
 }
 
 function App() {
-  const [gasolinaInput, setGasolinaInput] = useState<number | undefined>(undefined)
-  const [alcoolInput, setAlcoolInput] = useState<number | undefined>(undefined)
-  const [info, setInfo] = useState<InfoProps | undefined>(undefined)
+  const [gasolinaInput, setGasolinaInput] = useState<number | undefined>(
+    undefined
+  );
+  const [alcoolInput, setAlcoolInput] = useState<number | undefined>(undefined);
+  const [info, setInfo] = useState<InfoProps | undefined>(undefined);
 
-  function calcular(event: FormEvent){
+  function calcular(event: FormEvent) {
     event.preventDefault();
 
     if (alcoolInput !== undefined && gasolinaInput !== undefined) {
-      const calculo = (alcoolInput / gasolinaInput)
-      console.log(calculo)
+      const calculo = alcoolInput / gasolinaInput;
+      console.log(calculo);
 
-      if(calculo <= 0.7){
+      if (calculo <= 0.7) {
         setInfo({
           title: "Compensa usar álcool!",
           gasolina: formatarMoeda(gasolinaInput),
-          alcool: formatarMoeda(alcoolInput)
-        })
-      }else{
+          alcool: formatarMoeda(alcoolInput),
+        });
+      } else {
         setInfo({
           title: "Compensa usar Gasolina!",
           gasolina: formatarMoeda(gasolinaInput),
-          alcool: formatarMoeda(alcoolInput)
-        })
+          alcool: formatarMoeda(alcoolInput),
+        });
       }
     }
   }
 
-  function formatarMoeda(valor: number){
-    const valorFormatado = valor.toLocaleString("pt-br",
-    {
+  function formatarMoeda(valor: number) {
+    const valorFormatado = valor.toLocaleString("pt-br", {
       style: "currency",
-      currency: "BRL"
-    })
+      currency: "BRL",
+    });
 
     return valorFormatado;
   }
@@ -55,6 +56,8 @@ function App() {
   return (
     <div>
       <main className="container">
+        <p>by: Gabriel Lemes</p>
+        
         <img
           className="logo"
           src={logoImg}
@@ -71,8 +74,8 @@ function App() {
             min="1"
             step="0.01"
             required
-            value={alcoolInput ?? ''}
-            onChange={ (e) => setAlcoolInput(Number(e.target.value)) }
+            value={alcoolInput ?? ""}
+            onChange={(e) => setAlcoolInput(Number(e.target.value))}
           />
 
           <label>Gasolina (preço por litro):</label>
@@ -83,31 +86,24 @@ function App() {
             min="1"
             step="0.01"
             required
-            value={gasolinaInput ?? ''}
-            onChange={ (e) => setGasolinaInput(Number(e.target.value)) }
+            value={gasolinaInput ?? ""}
+            onChange={(e) => setGasolinaInput(Number(e.target.value))}
           />
 
-          <input className="button"  type="submit" value="Calcular"/>
+          <input className="button" type="submit" value="Calcular" />
         </form>
 
         {info && (
           <section className="result">
-            <h2 className="result-title">
-              {info.title}
-            </h2>
-  
+            <h2 className="result-title">{info.title}</h2>
+
             <span>Álcool {info.alcool}</span>
             <span>Gasolina {info.gasolina}</span>
           </section>
         )}
-
       </main>
-
-      <footer>
-        <p>Desenvolvido por Gabriel Lemes ©</p>
-      </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
